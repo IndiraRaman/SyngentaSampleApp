@@ -7,7 +7,7 @@ import styles from '../../styles/WelcomeStyle';
 
 const Welcome = () => {
   const navigation = useNavigation();
-
+ 
   const slides = [
     {
       key: 1,

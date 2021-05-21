@@ -19,7 +19,7 @@ export default StyleSheet.create({
     position: 'absolute',
     zIndex: 11,
     alignSelf: 'center',
-    top: '10%',
+    top: '16%',
   },
   skipButton: {
     position: 'absolute',

@@ -1,3 +1,4 @@
+// All styles related to FeedScreen has been kept at one place
 import {StyleSheet, Dimensions} from 'react-native';
 const {width} = Dimensions.get('window');
 
@@ -17,7 +18,7 @@ export default StyleSheet.create({
     color: '#247DF7',
   },
   textOneStyle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#454545',
   },

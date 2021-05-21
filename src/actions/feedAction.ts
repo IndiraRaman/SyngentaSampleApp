@@ -1,5 +1,5 @@
-import { FeedDetails } from "src/models/FeedModal"
-import {createAction, createAsyncAction } from "typesafe-actions"
+import { FeedDetails } from "src/models/FeedModal";
+import {createAction, createAsyncAction } from "typesafe-actions";
 
 export const fetchFeedAsync = createAsyncAction(
 
