@@ -13,19 +13,19 @@ const slides = [
         key: 1,
         text: "Home",
         description:"Welcome to Home",
-        image: require("../../../assets/images/1.png")
+        image: require("../../../assets/images/color.png")
     },
     {
         key: 2,
-        text: "Feed",
+        text: "Feeds",
         description:"Welcome to Feed",
-        image: require("../../../assets/images/2.png")
+        image: require("../../../assets/images/liquid.png")
     },
     {
         key: 3,
         text: "Details",
         description:"Welcome to Details",
-        image: require("../../../assets/images/3.png")
+        image: require("../../../assets/images/color.png")
     }
 ]
 
@@ -50,19 +50,19 @@ const RenderPrevView=()=>{
        renderItem={({item })=>{
            return(
                <>
-               <SafeAreaView style={{alignSelf: "flex-end"}}>
+               <SafeAreaView style={styles.skipButton}>
                    <TouchableOpacity onPress={()=>navigation.navigate("FeedScreen")}>
                        <Text style={styles.textStyle}>Skip</Text>
                    </TouchableOpacity>
                </SafeAreaView>
-               <View>
+               <View style={styles.imageContainer}>
                    <Image source = {item.image}  />
                </View>
                <View style={styles.descriptionStyle}>
-                   <Text style={styles.textStyle}>{item.text}</Text>
+                   <Text style={styles.textOneStyle}>{item.text}</Text>
                </View>
                <View style={styles.descriptionStyle}>
-                   <Text style={styles.textStyle}>{item.description}</Text>
+                   <Text style={styles.textOneStyle}>{item.description}</Text>
                </View>
                </>
            )

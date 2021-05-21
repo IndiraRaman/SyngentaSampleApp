@@ -14,11 +14,17 @@ export default StyleSheet.create({
     },
     textStyle: {
         fontSize: 16,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color:"#247DF7"
+    },
+    textOneStyle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color:"#454545"
     },
     lineStyle: {
         borderBottomColor: "black",
-        borderBottomWidth: 2,
+        borderBottomWidth: 1,
         marginBottom: 8
     },
     wrappingContainer:{

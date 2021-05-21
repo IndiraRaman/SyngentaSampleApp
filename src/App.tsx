@@ -7,20 +7,29 @@ import FeedScreen from "./containers/screen/FeedScreen";
 const App = ()=>{
     const LoginStack = createStackNavigator();
     return(
+
+        
         <LoginStack.Navigator>
             <>
             <LoginStack.Screen 
             name="Welcome"
             component={Welcome}
             options={{
-                headerShown: false 
+                headerShown: false,
+              
            }}
             />
                <LoginStack.Screen 
             name="FeedScreen"
             component={FeedScreen}
             options={{
-                headerShown: false
+                headerTitleAlign:"center",
+                headerShown: true,
+                headerStyle:{
+                    backgroundColor:"#EFEFEF00"
+                },
+                headerTintColor:"#231F20"
+
            }}
             />
                <LoginStack.Screen 

@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux'
 import { fetchFeedAsync } from 'src/actions/feedAction'
 import { FeedDetails, Item } from 'src/models/FeedModal'
 import useSelector from "../../utils/useSelector"
+import styles from "../../styles/FeedScreenStyle"
 
-const { height, width } = Dimensions.get("window")
 
 const Welcome = () => {
     const dispatch = useDispatch()
@@ -31,14 +31,14 @@ const Welcome = () => {
 
     const _renderItem = ({item}) => {
         return (
-            <View style={{  width: width, flex: 1, padding:16, backgroundColor:"#f8f8ff", elevation:8, marginTop:6, marginBottom:6   }}>
+            <View style={styles.renderStyle}>
                 <TouchableOpacity onPress={() => { navigation.navigate("DetailsScreen",{path: item.link}) }}>
                     <View >
-                        <Text style={{ fontSize: 16, fontWeight: "bold" }}>{item.title}</Text>
+                        <Text style={styles.textStyle}>{item.title}</Text>
                         
                         <Image source={item.enclosure._url} style={{height: 15, width:15, }}/> 
-                        <View style={{borderBottomColor:"black", borderBottomWidth:2, marginBottom:8}}/>
-                        <Text style={{ fontSize: 18, fontWeight: "500" }}>{item.description}</Text>
+                        <View style={styles.lineStyle}/>
+                        <Text style={styles.textOneStyle}>{item.description}</Text>
                         
                     </View>
                     </TouchableOpacity>
@@ -51,7 +51,7 @@ const Welcome = () => {
 
 
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={styles.wrappingContainer}>
             <SafeAreaView >
                 <FlatList
                     data={data}
