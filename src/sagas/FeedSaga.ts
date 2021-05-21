@@ -1,6 +1,6 @@
-import {call, delay, put, race, take, takeEvery} from "redux-saga/effects"
-import {fetchFeedAsync} from "../actions/feedAction"
-import apiService from "../service/apiService"
+import {call, delay, put, race, take, takeEvery} from "redux-saga/effects";
+import {fetchFeedAsync} from "../actions/feedAction";
+import apiService from "../service/apiService";
 
 export function* fetchFeedSaga(){
     try{
@@ -17,5 +17,5 @@ export function* fetchFeedSaga(){
     }
 }
     export default function* root(){
-        yield takeEvery(fetchFeedAsync.request, fetchFeedSaga)
+        yield takeEvery(fetchFeedAsync.request, fetchFeedSaga);
     }

@@ -1,8 +1,6 @@
-import axios from 'axios';
-import React from 'react';
 import {parse} from 'fast-xml-parser';
 import {FeedDetails} from 'src/models/FeedModal';
-//import XMLParser from "react-xml-parser"
+
 
 export default class ApiService {
   static async fetchFeed(): Promise<FeedDetails> {
@@ -10,13 +8,9 @@ export default class ApiService {
 
     const res = await fetch(url);
     const Data = await res.text();
-
+// Data is in xml and obj is parsed to json
     const obj = parse(Data);
-    console.log('Item', obj);
 
     return obj;
-
-    // console.log("Data", Data)
-    // console.log("obj", obj)
   }
 }
