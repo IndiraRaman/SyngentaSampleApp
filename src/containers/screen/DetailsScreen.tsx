@@ -1,20 +1,11 @@
-import { useNavigation } from '@react-navigation/native'
-import React from 'react'
-import {View, Text} from 'react-native'
-import {WebView} from "react-native-webview"
- 
+import * as React from 'react';
+import {memo} from 'react';
+import {WebView} from 'react-native-webview';
 
-const DetailsScreen = ({route})=>{
+const DetailsScreen = ({route}) => {
+  // Getting link from params
+  const link = route.params.path;
+  return <WebView source={{uri: link}} />;
+};
 
-    const link = route.params.path
-    console.log("link---", link)
-    const navigation = useNavigation()
-    return(
-        <View>
-            <WebView source={{uri: link}}/>
-           
-        </View>
-    )
-}
-
-export default DetailsScreen;
+export default memo(DetailsScreen);
