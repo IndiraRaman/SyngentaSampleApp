@@ -16,64 +16,95 @@ import {fetchFeedAsync} from 'src/actions/feedAction';
 import useSelector from '../../utils/useSelector';
 import styles from '../../styles/FeedScreenStyle';
 import {memo} from 'react';
+import { FeedDetails } from 'src/models/FeedModal';
 
 const FeedScreen = () => {
+
+  // using usestate hook for changing the value of progress
   const [refreshing, setRefreshing] = useState(false);
+
+  // using useDispatch hook for dispatching action
   const dispatch = useDispatch();
 
-//Getting data from redux store using useSelector
-  const FeedData: any = useSelector(state => state?.feed?.feed);
-
-  const data = FeedData?.rss?.channel?.item;
+  
 
   useEffect(() => {
     // dispatching action
     dispatch(fetchFeedAsync.request());
   }, []);
 
-  const wait = (timeout: number) => {
+  //Getting data from redux store using useSelector
+  const FeedData: any = useSelector(state => state?.feed?.feed);
+
+
+// using splice to get desired data from FeedData and passing this data in my flatlist
+ const data = FeedData?.children[0]?.children.splice(6,40)
+  
+// setting timeout after which FeedData refresh progress will be false
+  const timeOut = (timeout: number) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   };
 
   // Refresh on pull
-  const onRefresh = useCallback(() => {
+  const onFeedRefresh = useCallback(() => {
+    // dispatching an action whenever feed is refreshed
+    dispatch(fetchFeedAsync.request())
+    // During refresh setting progress ture and after 2000 ms setting it false
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
+    timeOut(2000).then(() => setRefreshing(false));
   }, []);
 
   // useNavigation hook for navigating to different screen
   const navigation = useNavigation();
 
   // FlatList render item
-  const _renderItem = ({item}) => {
+  const _renderItem = (({item}) => {
+    
     return (
       <View style={styles.renderStyle}>
+        {/* using touchableOpacity so that on click navigate to
+         DetailsScreen and passing link to show webview */}
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('DetailsScreen', {path: item.link});
+            // passing link to DetailsScreen on navigation
+            navigation.navigate('DetailsScreen', {path: item.children[2].value});
           }}>
-          <View>
-            <Text style={styles.textStyle}>{item.title}</Text>
-
+            <View>
+          <View style={styles.containerStyle}>
+           
+            <View style={styles.imageView}>
             <Image
-              source={item.enclosure._url}
-              style={{
-                height: 15,
-                width: 15,
-              }}
+            // In uri passing the image url
+              source={{uri: item.children[4].url}}
+              style={styles.imageStyle}
             />
+            </View>
+
+             <View style={styles.textView}>
+               {/* This text is used for showing title */}
+            <Text style={styles.textStyle}>{item.children[0].value}</Text>
+            </View>
+            
+            </View>
+
             <View style={styles.lineStyle} />
-            <Text style={styles.textOneStyle}>{item.description}</Text>
+
+            <View style={styles.textOneView}>
+              {/* This text is used for showing description */}
+            <Text style={styles.textOneStyle}>{item.children[1].value}</Text>
+            </View>
+
           </View>
         </TouchableOpacity>
       </View>
     );
-  };
+  });
 
   return (
     <ScrollView
+    // Refreshing Feed
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        <RefreshControl refreshing={refreshing} onRefresh={onFeedRefresh} />
       }
       style={styles.wrappingContainer}>
       <SafeAreaView>

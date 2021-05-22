@@ -1,27 +1,25 @@
+// creating an interface
 export interface FeedDetails {
-  rss?: Rss;
+  attribute?: object;
+  children?: Children[]
+  name?: string;
+  value?: string
 }
-export interface Rss {
-  channel?: Channel;
+export interface Children {
+  attribute?: object;
+  children?: Children[]
+  name?: string;
+  value?: string
 }
-export interface Channel {
-  title?: string;
-  link?: string;
-  generator?: string;
-  docs?: string;
-  lastBuildDate?: string;
-  pubDate?: string;
-  item?: Item;
+export interface Children {
+  attribute?: object;
+  children?: Children[]
+  name?: string;
+  value?: string;
 }
-export interface Item {
-  title?: string;
-  description?: string;
-  link?: string;
-  pubDate?: string;
-  enclosure?: Enclosure;
+export interface Attribute {
+  url?: string;
+  type?: string;
+  length?: string
 }
-export interface Enclosure {
-  _url?: string;
-  _length?: string;
-  _type?: string;
-}
+
