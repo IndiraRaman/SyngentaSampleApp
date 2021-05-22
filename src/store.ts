@@ -1,25 +1,24 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import FeedReducer, { FeedState } from "../src/reducers/FeedReducer";
-import {PersistConfig, persistReducer, persistStore} from "redux-persist";
+import FeedReducer from "../src/reducers/FeedReducer";
+import { persistReducer, persistStore} from "redux-persist";
 import saga from "./sagas/index";
 import {applyMiddleware, combineReducers, createStore, Dispatch, compose} from "redux";
-
 import createSagaMiddleware from "redux-saga";
 import {RootAction} from "./actions/actionTypes";
 import { MiddlewareAPI } from "redux";
+import hardSet from "redux-persist/lib/stateReconciler/hardSet";
+
 
 // Redux-persist library provides ways to store redux state tree into some sort
 // of storage and rehydrate when app is reopened.
 // Here asyncStorage is used with PersistConfig for storing data.
-const feedPersistConfig: PersistConfig<
-FeedState,
-unknown,
-unknown,
-unknown
->={
+
+const feedPersistConfig = {
+    key: 'feed',
     storage: AsyncStorage,
-    key:"feed"
-}
+    stateReconciler: hardSet,
+    blacklist: [],
+    };
 
 // using persistReducer to store data in redux store by passing FeedReducer and feedPersistConfig
 export const reducers = {
@@ -51,9 +50,7 @@ const enhancers = [applyMiddleware(...middleware)]
 
 // creating store by passing rootReducer & store enhancers by passing it through compose
 export const store = createStore(rootReducer, compose(...enhancers));
-export const dispatch = (action: any)=>{
-    store.dispatch(action);
-}
+
 sagaMiddleware.run(saga);
 
 // Exporting our store to persistStore

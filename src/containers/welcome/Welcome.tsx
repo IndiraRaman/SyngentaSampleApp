@@ -48,6 +48,7 @@ const Welcome = () => {
       </View>
     );
   };
+  
   return (
     <AppIntroSlider
       renderItem={({item}) => {
