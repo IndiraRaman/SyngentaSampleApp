@@ -1,14 +1,18 @@
-import {fetchFeedAsync} from "../actions/feedAction";
+import {fetchFeedAsync, setFeedProgress} from "../actions/feedAction";
+import {FeedAction} from "../actions/actionTypes"
 import {action, createReducer} from "typesafe-actions";
 import { FeedDetails } from "src/models/FeedModal";
-import { FeedAction } from "src/actions/actionTypes";
 
 // creating an interface
 export interface FeedState{
-    feed?: FeedDetails
+    feed?: FeedDetails;
+    progress?: boolean
 }
 // Defining an initial state
-const initialState: any ={}
+const initialState: FeedState ={
+    feed:{
+        progress: false,
+    }}
 
 // creating feedReducer
 const feedReducer = createReducer<FeedState, FeedAction>(initialState)
@@ -20,5 +24,10 @@ const feedReducer = createReducer<FeedState, FeedAction>(initialState)
 // Failure
 .handleAction(fetchFeedAsync.failure, (state, action) =>({
     ...state,
+}))
+.handleAction(setFeedProgress, (state, action) =>({
+    feed:{
+        progress: action.payload
+    },
 }))
 export default feedReducer;

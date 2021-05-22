@@ -2,7 +2,7 @@ import {call, delay, put, race, take, takeEvery} from "redux-saga/effects";
 import {fetchFeedAsync} from "../actions/feedAction";
 import apiService from "../service/apiService";
 
-// creating feedSaga 
+// creating feedSaga for fetching data from endpoint 
 export function* fetchFeedSaga(){
     try{
         const { response } = yield race({

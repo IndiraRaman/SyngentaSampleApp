@@ -8,4 +8,8 @@ export const fetchFeedAsync = createAsyncAction(
     ["FEED_SUCCESS", (res: FeedDetails)=> res],
     ["FEED_FAILURE", (err: Error)=> err],
     "FEED_CANCEL"
+)();
+export const setFeedProgress = createAction(
+    "FEED_PROGRESS_START",
+    (progress?: boolean) => progress
 )()

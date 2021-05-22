@@ -1,8 +1,5 @@
 import axios from 'axios';
-import {parse} from 'fast-xml-parser';
 import {FeedDetails} from 'src/models/FeedModal';
-
-
 
 export default class ApiService {
   static async fetchFeed(): Promise<FeedDetails> {
@@ -16,6 +13,6 @@ export default class ApiService {
 const XMLParser = require('react-xml-parser');
 const xmlParsedData = new XMLParser().parseFromString(Data);    
 
-     return xmlParsedData;
+return xmlParsedData;
   }
 }

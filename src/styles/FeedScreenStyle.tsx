@@ -3,13 +3,13 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  renderStyle: {
-    height: width * 280 / 375,
+  renderStyle: {  
     flex: 1,
+    width:width,
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 10,
-    paddingTop: 6,
+    paddingTop: 15,
     backgroundColor: '#fffff0',
     elevation: 8,
     marginTop: 8,
@@ -21,14 +21,12 @@ export default StyleSheet.create({
     color: '#000080',
     textAlign: "left",
     alignSelf: "flex-start",
-    justifyContent: "center",
-    alignItems: "flex-end"
+    justifyContent: "center",   
   },
   textOneStyle: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#454545',
-
   },
   lineStyle: {
     borderBottomColor: 'black',
@@ -38,17 +36,17 @@ export default StyleSheet.create({
   },
   wrappingContainer: {
     flex: 1,
-    margin: 10
-
+    width:width,
   },
   imageView: {
-    marginRight: 10,
-    alignSelf: "baseline",
-    marginTop: 10
+    marginRight:20,
+    marginLeft:10,
+    alignSelf: "center",
+    position:"relative"   
   },
   textOneView: {
-    paddingRight: 10,
-    paddingLeft: 10
+    padding:20,
+    textAlign:"left"
   },
   textView: {
     marginLeft: 10,
@@ -57,17 +55,15 @@ export default StyleSheet.create({
     alignSelf: "center"
   },
   containerStyle: {
-    flex: 1,
+    flex:1,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     paddingRight: 10,
     paddingLeft: 10,
-    paddingBottom: 10,
-    height: width * 220 / 375
   },
   imageStyle:{
-    height: 140,
+    height: 120,
     width: 120,
   },
 });
