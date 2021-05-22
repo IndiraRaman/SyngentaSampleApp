@@ -11,8 +11,13 @@ export default class ApiService {
   
 // Data is in xml and xmlParsedData is parsed to json
 const XMLParser = require('react-xml-parser');
-const xmlParsedData = new XMLParser().parseFromString(Data);    
+const xmlParsedData = new XMLParser().parseFromString(Data);  
 
-return xmlParsedData;
+// Since the response was very much nested thats 
+// why I have extracted the required part and returned it.
+
+const xmlParsed = xmlParsedData.children[0].children.splice(6,40)
+console.log("xmlParsed", xmlParsed)
+return xmlParsed;
   }
 }

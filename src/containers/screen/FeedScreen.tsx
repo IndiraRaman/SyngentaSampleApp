@@ -9,13 +9,12 @@ import {
   Image,
   ScrollView,
   SafeAreaView} from 'react-native';
-import ProgressDialog from "react-native-progress-dialog";
 import { useDispatch } from 'react-redux';
-import { fetchFeedAsync, setFeedProgress } from 'src/actions/feedAction';
+import { fetchFeedAsync } from 'src/actions/feedAction';
 import useSelector from '../../utils/useSelector';
 import styles from '../../styles/FeedScreenStyle';
 import { memo } from 'react';
-import { Children, FeedDetails } from 'src/models/FeedModal';
+import { FeedDetails } from 'src/models/FeedModal';
 
 const FeedScreen = () => {
   // using usestate hook for changing the value of progress
@@ -27,15 +26,12 @@ const FeedScreen = () => {
   //Getting data from redux store using useSelector
   const Feed: FeedDetails = useSelector(state => state?.FeedState?.feed) as FeedDetails;
   
+
   useEffect(() => {
     // dispatching action
     dispatch(fetchFeedAsync.request());
-      dispatch(setFeedProgress(true))
     
   }, []);
-  
-  // using splice to get desired data from FeedData and passing this data in my flatlist
-  const FeedData: Children = Feed?.children?.[0].children?.splice(6,40)  as Children;
   
   // Refresh on pull
   const onFeedRefresh = useCallback(() => {
@@ -72,13 +68,13 @@ const FeedScreen = () => {
 
               <View style={styles.textView}>
                 {/* This text is used for showing title */}
-                <Text style={styles.textStyle}>{item.children[0].value}</Text>
+                <Text style={styles.textStyle} key ={item}>{item.children[0].value}</Text>
               </View>
             </View>
 
             <View style={styles.textOneView}>
               {/* This text is used for showing description */}
-              <Text style={styles.textOneStyle}>{item.children[1].value}</Text>
+              <Text style={styles.textOneStyle} key ={item}>{item.children[1].value}</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -94,12 +90,10 @@ const FeedScreen = () => {
       }
       style={styles.wrappingContainer}>
       <SafeAreaView>
-       <ProgressDialog visible={Feed?.progress === true ? true:false}
-       loaderColor = "black"/>
         <FlatList
-          data={FeedData}
+          data={Feed}
           renderItem={item => _renderItem(item)}
-          keyExtractor={index => index.toString()}
+          keyExtractor={item => {return item.children[0].value}}
         />
       </SafeAreaView>
     </ScrollView>

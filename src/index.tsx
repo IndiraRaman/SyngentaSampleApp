@@ -13,7 +13,7 @@ export default function Root() {
     so that what ever change occur our store gets called */
 
         <Provider store={store}>
-            {/* Wrapping it with navigationContainer */}
+            {/* Wrapping it with navigationContainer and PersistGate */}
             <PersistGate loading={null} persistor={persistor}>
                 <NavigationContainer>
 

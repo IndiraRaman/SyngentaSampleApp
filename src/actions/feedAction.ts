@@ -1,5 +1,5 @@
 import { FeedDetails } from "src/models/FeedModal";
-import {createAction, createAsyncAction } from "typesafe-actions";
+import { createAsyncAction } from "typesafe-actions";
 
 export const fetchFeedAsync = createAsyncAction(
 // creating my createAsyncAction from typesafe-actions
@@ -9,7 +9,3 @@ export const fetchFeedAsync = createAsyncAction(
     ["FEED_FAILURE", (err: Error)=> err],
     "FEED_CANCEL"
 )();
-export const setFeedProgress = createAction(
-    "FEED_PROGRESS_START",
-    (progress?: boolean) => progress
-)()

@@ -20,12 +20,12 @@ const feedPersistConfig = {
     blacklist: [],
     };
 
-// using persistReducer to store data in redux store by passing FeedReducer and feedPersistConfig
+// Using persistReducer to store data in redux store by passing FeedReducer and feedPersistConfig
 export const reducers = {
     FeedState: persistReducer(feedPersistConfig, FeedReducer)
 }
 
-// creating rootReducer with the help of combineReducer by passing reducer
+// Creating rootReducer with the help of combineReducer by passing reducer
 export const rootReducer = combineReducers(reducers);
 
 export type RootState = ReturnType<typeof rootReducer>
