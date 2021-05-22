@@ -6,6 +6,7 @@ const DetailsScreen = ({route}) => {
 // Passing link in navigation and getting it using params
   const link = route.params.path;
 
+  // using webview for showing the details
   return <WebView source={{uri: link}} />;
 };
 
