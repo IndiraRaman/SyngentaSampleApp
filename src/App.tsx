@@ -6,6 +6,7 @@ import FeedScreen from './containers/screen/FeedScreen';
 import {memo} from 'react';
 
 const App = () => {
+
   // Creating an stack Navigator with the help of createStackNavigator
   const LoginStack = createStackNavigator();
   return (
@@ -31,7 +32,7 @@ const App = () => {
             headerTintColor: '#231F20',
             headerTitle: "Feed Screen",
             headerTitleStyle:{
-              fontSize:26
+              fontSize:22
             }
           }}
           

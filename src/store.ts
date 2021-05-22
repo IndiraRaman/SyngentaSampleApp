@@ -5,9 +5,12 @@ import saga from "./sagas/index";
 import {applyMiddleware, combineReducers, createStore, Dispatch, compose} from "redux";
 
 import createSagaMiddleware from "redux-saga";
-import {RootActions} from "./actions/actionTypes";
+import {RootAction} from "./actions/actionTypes";
 import { MiddlewareAPI } from "redux";
 
+// Redux-persist library provides ways to store redux state tree into some sort
+// of storage and rehydrate when app is reopened.
+// Here asyncStorage is used with PersistConfig for storing data.
 const feedPersistConfig: PersistConfig<
 FeedState,
 unknown,
@@ -18,17 +21,22 @@ unknown
     key:"feed"
 }
 
-// using persistReducer to store data in redux store
+// using persistReducer to store data in redux store by passing FeedReducer and feedPersistConfig
 export const reducers = {
-    feed: persistReducer(feedPersistConfig, FeedReducer)
+    FeedState: persistReducer(feedPersistConfig, FeedReducer)
 }
 
 // creating rootReducer with the help of combineReducer by passing reducer
 export const rootReducer = combineReducers(reducers);
+
 export type RootState = ReturnType<typeof rootReducer>
 
+// Redux middleware function provides a medium to interact with 
+// dispatched action before they reach the reducer.
+//  Redux middleware applies middleware to store.
+
 const appMiddleware = (_store: MiddlewareAPI)=>(next: Dispatch) =>(
-    action: RootActions
+    action: RootAction
 )=>{
     next(action);
 }
@@ -37,10 +45,11 @@ const sagaMiddleware = createSagaMiddleware();
 // creating our middleware
 const middleware = [sagaMiddleware, appMiddleware]
 
+// Enhancers are higher order function that add some extra functionality to store.
 // creating enhancers by passing middleware to applyMiddleware
 const enhancers = [applyMiddleware(...middleware)]
 
-// creating store by passing rootReducer & middleware
+// creating store by passing rootReducer & store enhancers by passing it through compose
 export const store = createStore(rootReducer, compose(...enhancers));
 export const dispatch = (action: any)=>{
     store.dispatch(action);

@@ -15,19 +15,19 @@ const Welcome = () => {
       key: 1,
       text: 'Home',
       description: 'Welcome to Home',
-      image: require('../../../assets/images/color.png'),
+      image: require('../../../assets/images/spinner.png'),
     },
     {
       key: 2,
       text: 'Feeds',
       description: 'Welcome to Feed',
-      image: require('../../../assets/images/colorOne.png'),
+      image: require('../../../assets/images/liquid.png'),
     },
     {
       key: 3,
       text: 'Details',
       description: 'Welcome to Details',
-      image: require('../../../assets/images/colorTwo.png'),
+      image: require('../../../assets/images/color.png'),
     },
   ];
 
@@ -56,7 +56,8 @@ const Welcome = () => {
             <SafeAreaView style={styles.skipButton}>
               {/* Skip button is used to navigate to FeedScreen */}
               <TouchableOpacity
-                onPress={() => navigation.navigate('FeedScreen')}>
+                onPress={() => {navigation.navigate('FeedScreen')         
+              }}>
                 <Text style={styles.textStyle}>Skip</Text>
               </TouchableOpacity>
             </SafeAreaView>
