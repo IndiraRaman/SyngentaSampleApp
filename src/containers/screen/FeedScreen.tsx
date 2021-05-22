@@ -17,9 +17,7 @@ import styles from '../../styles/FeedScreenStyle';
 import { memo } from 'react';
 import { Children, FeedDetails } from 'src/models/FeedModal';
 
-
 const FeedScreen = () => {
-
   // using usestate hook for changing the value of progress
   const [refreshing, setRefreshing] = useState(false);
   
@@ -32,14 +30,11 @@ const FeedScreen = () => {
   useEffect(() => {
     // dispatching action
     dispatch(fetchFeedAsync.request());
-    //setIsLoading(false)
-    
       dispatch(setFeedProgress(true))
     
   }, []);
-
+  
   // using splice to get desired data from FeedData and passing this data in my flatlist
-
   const FeedData: Children = Feed?.children?.[0].children?.splice(6,40)  as Children;
   
   // Refresh on pull
@@ -69,6 +64,7 @@ const FeedScreen = () => {
                 <Image
                   // In uri passing the image url
                   source={require("../../../assets/images/placeholder.png")}
+                  // In Image url getting 404 response so for now using a placeholder image.
                   //source={{uri: item.children[4].attributes.url}}
                   style={styles.imageStyle}
                 />
